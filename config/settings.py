@@ -205,3 +205,18 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# Настройки для Railway
+import os
+
+ALLOWED_HOSTS = ['*', '.railway.app', '.up.railway.app']
+
+# WhiteNoise для статики
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# CORS
+CORS_ALLOW_ALL_ORIGINS = True
+
+# Redis URL из переменных окружения
+REDIS_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379')
