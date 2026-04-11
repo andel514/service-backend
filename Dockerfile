@@ -15,7 +15,7 @@ RUN pip install --upgrade pip && \
 
 COPY . .
 
-RUN python manage.py collectstatic --noinput || true
+RUN python manage.py collectstatic --noinput --clear || true
 
 EXPOSE 8000
 
