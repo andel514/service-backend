@@ -17,4 +17,11 @@ COPY . .
 
 EXPOSE 8000
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Создаём скрипт запуска
+RUN echo '#!/bin/bash\n\
+python manage.py migrate --noinput\n\
+python manage.py collectstatic --noinput\n\
+gunicorn config.wsgi:application --bind 0.0.0.0:$PORT' > /entrypoint.sh && \
+chmod +x /entrypoint.sh
+
+CMD ["/entrypoint.sh"]
