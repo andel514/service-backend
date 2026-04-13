@@ -4,9 +4,8 @@
     "dockerfilePath": "Dockerfile"
   },
   "deploy": {
-    "startCommand": "python manage.py migrate --noinput && python manage.py runserver 0.0.0.0:$PORT --noreload",
-    "healthcheckPath": "/health/",
-    "healthcheckTimeout": 300,
-    "restartPolicyType": "ON_FAILURE"
+    "startCommand": "tail -f /dev/null",
+    "healthcheckPath": "/",
+    "restartPolicyType": "NEVER"
   }
 }
